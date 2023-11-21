@@ -6,7 +6,7 @@ class GildedRose {
     private final String BACKSTAGE_PASSES = "Backstage passes to a TAFKAL80ETC concert";
     private final String SULFURAS = "Sulfuras, Hand of Ragnaros";
 
-    Item[] items;
+    private Item[] items;
 
     public GildedRose( Item[] items ) {
         this.items = items;
@@ -55,15 +55,20 @@ class GildedRose {
             backstagePasses.quality += 1;
 
         // The quality of an item can never be greater than 50
-        backstagePasses.quality = Math.min(50, backstagePasses.quality);
+        backstagePasses.quality = Math.min( 50, backstagePasses.quality );
     }
 
-    public void updateItem(Item item){
-        if (item.sellIn <= 0)
+    public void updateItem( Item item ) {
+        if ( item.sellIn <= 0 ) {
             item.quality -= 2;
-        else
+        } else {
             item.quality -= 1;
-        item.quality = Math.max(item.quality, 0);
+        }
+        item.quality = Math.max( item.quality, 0 );
+    }
+
+    public Item[] getItems() {
+        return items;
     }
 
 }
