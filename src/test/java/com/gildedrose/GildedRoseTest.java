@@ -6,6 +6,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class GildedRoseTest {
 
+    private final String AGED_BRIE = "Aged Brie";
+    private final String BACKSTAGE_PASSES = "Backstage passes to a TAFKAL80ETC concert";
+    private final String CONJURED = "Conjured Mana Cake";
+    private final String SULFURAS = "Sulfuras, Hand of Ragnaros";
+
     @Test
     void happyPathTest() {
         Item[] items = new Item[]{new Item( "foo", 10, 20 ),
@@ -24,7 +29,7 @@ class GildedRoseTest {
 
     @Test
     void sulfurasTest() {
-        Item[] items = new Item[]{new Item( "Sulfuras, Hand of Ragnaros", 10, 80 )};
+        Item[] items = new Item[]{new Item( SULFURAS, 10, 80 )};
         GildedRose app = new GildedRose( items );
         app.updateQuality();
         assertEquals( 80, app.items[0].quality );
@@ -33,10 +38,10 @@ class GildedRoseTest {
 
     @Test
     void backstagePassesTest() {
-        Item[] items = new Item[]{new Item( "Backstage passes to a TAFKAL80ETC concert", 10, 30 ),
-                new Item( "Backstage passes to a TAFKAL80ETC concert", 5, 30 ),
-                new Item( "Backstage passes to a TAFKAL80ETC concert", 0, 30 ),
-                new Item( "Backstage passes to a TAFKAL80ETC concert", 20, 30 )};
+        Item[] items = new Item[]{new Item( BACKSTAGE_PASSES, 10, 30 ),
+                new Item( BACKSTAGE_PASSES, 5, 30 ),
+                new Item( BACKSTAGE_PASSES, 0, 30 ),
+                new Item( BACKSTAGE_PASSES, 20, 30 )};
         GildedRose app = new GildedRose( items );
         app.updateQuality();
         assertEquals( 32, app.items[0].quality );
@@ -51,9 +56,9 @@ class GildedRoseTest {
 
     @Test
     void agedBrieTest() {
-        Item[] items = new Item[]{new Item( "Aged Brie", 10, 30 ),
-                new Item( "Aged Brie", 10, 50 ),
-                new Item( "Aged Brie", -10, 30 )
+        Item[] items = new Item[]{new Item( AGED_BRIE, 10, 30 ),
+                new Item( AGED_BRIE, 10, 50 ),
+                new Item( AGED_BRIE, -10, 30 )
         };
         GildedRose app = new GildedRose( items );
         app.updateQuality();
@@ -68,9 +73,9 @@ class GildedRoseTest {
     @Test
     void conjuredItemTest() {
         Item[] items = new Item[]{
-                new Item( "Conjured Mana Cake", 10, 30 ),
-                new Item( "Conjured Mana Cake", 0, 30 ),
-                new Item( "Conjured Mana Cake", 5, 0 )};
+                new Item( CONJURED, 10, 30 ),
+                new Item( CONJURED, 0, 30 ),
+                new Item( CONJURED, 5, 0 )};
         GildedRose app = new GildedRose( items );
         app.updateQuality();
         assertEquals( 28, app.items[0].quality );

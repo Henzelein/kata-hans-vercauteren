@@ -1,31 +1,35 @@
 package com.gildedrose;
 
 class GildedRose {
+
+    private final String AGED_BRIE = "Aged Brie";
+    private final String BACKSTAGE_PASSES = "Backstage passes to a TAFKAL80ETC concert";
+    private final String SULFURAS = "Sulfuras, Hand of Ragnaros";
+
     Item[] items;
 
-    public GildedRose(Item[] items) {
+    public GildedRose( Item[] items ) {
         this.items = items;
     }
 
     public void updateQuality() {
-        for (int i = 0; i < items.length; i++) {
+        for( int i = 0; i < items.length; i++ ) {
             Item item = items[i];
-            if (item.name.equals("Aged Brie")) {
+            if ( item.name.equals( AGED_BRIE ) ) {
                 updateAgedBrie( item );
                 item.sellIn--;
-            } else if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")){
-                updateBackstagePasses(item);
+            } else if ( item.name.equals( BACKSTAGE_PASSES ) ) {
+                updateBackstagePasses( item );
                 item.sellIn--;
-            }
-            else if (item.name.equals("Sulfuras, Hand of Ragnaros")){
+            } else if ( item.name.equals( SULFURAS ) ) {
                 // do nothing
-            } else if (item.name.startsWith( "Conjured" )){
+            } else if ( item.name.startsWith( "Conjured" ) ) {
                 // Conjured items should decrease in quality twice as fast as normal items
-                updateItem(item);
-                updateItem(item);
+                updateItem( item );
+                updateItem( item );
                 item.sellIn--;
             } else {
-                updateItem(item);
+                updateItem( item );
                 item.sellIn--;
             }
         }
